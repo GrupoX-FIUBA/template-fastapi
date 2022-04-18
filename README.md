@@ -14,12 +14,12 @@ To run the application there are two options:
 
 ### With Docker
 
-Run `docker-compose up` to start the app in port 8000 or `PORT=xxxx docker-compose up` to use a specific `xxxx` port.
+Run `docker-compose up --build` to start the app in port 8000 or `PORT=xxxx docker-compose up` to use a specific `xxxx` port.
 
 ### With _virtualenv_
 
 - First of all create a _virtualenv_ (_i.e._ `python3 -m venv venv`) and activate it (`source venv/bin/activate`).
-- Upgrade pip and install the dependencies: `pip install --upgrade pip && pip install -r requirements`.
+- Upgrade pip and install the dependencies: `pip install --upgrade pip && pip install -r requirements.txt`.
 - Run the app with:
 	```bash
 	uvicorn app.main:app --host 0.0.0.0 --port 8000
