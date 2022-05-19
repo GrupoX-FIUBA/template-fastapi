@@ -1,6 +1,8 @@
 env/
 venv/
-.env/
+.env
 
 __pycache__/
 .pytest_cache/
+
+psql_data/

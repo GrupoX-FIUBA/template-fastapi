@@ -1,8 +1,10 @@
 #!/bin/sh
 
+alembic upgrade head
+
 echo -e "\033[0;34mRunning Flake8 Linter...\033[0m"
 
-FLAKE=`flake8 --ignore=W191 app/`
+FLAKE=`flake8 --ignore=E251 app/`
 FLAKE_CODE=`echo $?`
 
 if [ "$FLAKE_CODE" -ne "0" ]; then
@@ -15,7 +17,7 @@ fi
 
 echo -e "\n\033[0;34mRunning tests...\033[0m"
 
-PYTEST=`pytest --color=yes --no-header app/*`
+PYTEST=`pytest --color=yes --no-header app/tests`
 PYTEST_CODE=`echo $?`
 
 if [ "$PYTEST_CODE" -ne "0" ]; then

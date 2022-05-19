@@ -1,8 +1,9 @@
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 
-app = FastAPI()
+from app.routes.api import router as api_router
+from app.endpoints.base import get_api_key
 
 
-@app.get("/")
-def read_root():
-	return {"msg": "Hello World"}
+app = FastAPI(dependencies = [Depends(get_api_key)])
+
+app.include_router(api_router)
