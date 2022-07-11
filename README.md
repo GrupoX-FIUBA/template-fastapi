@@ -1,11 +1,21 @@
 # Template repository for FastAPI microservices
 
-This is a template to use as a starting point for FastAPI microservice repositories. Once configured, it will run the tests on every pull request to `main`, and will automatically deploy to corresponding Heroku app when a push to `main` occurs.
+This is a template to use as a starting point for FastAPI microservice repositories. Once configured, it will run the tests on every pull request to `main`, and will automatically deploy to corresponding the Kubernetes cluster when a push to `main` occurs.
 
 ## To Do after fork/create-from-template
 
-- Simply go to the repository settings, _Actions secrets_ and create a new _repository secret_ with name `HEROKU_APP_NAME` and the name of the Heroku app in the _value_ field.
-- Then, replace in `.github/workflows/deploy.yml` the `HD_X_API_KEY` value for a specific microservice secret, and the other secrets if necessary.
+1. Go to the repository settings, _Actions secrets_ and create the following _repository secrets_:
+	- `APP_NAME`: the name of the service (preferably `service-X`).
+	- `DB_USER`: the name of the database user.
+	- `DB_PASS`: the password for the database user.
+2. Create the following _Organization secrets_, replacing `XYZ` with your service name:
+	- `XYZ_SERVICE_URL`: the URL you will publicly access to your service (Ask the Kubernetes manager).
+	- `XYX_SERVICE_API_KEY`: a random API Key to limit access to your service.
+3. In `.github/workflows/deploy.yml`, replace `X_SERVICE_API_KEY` with the name of the secret you just create, and `xdb` with the name of the database (preferably something like `musicdb`).
+4. If needed, create the user and database for postgres:
+	- Connect to the postgres instance (via Kubernetes).
+	- `CREATE USER user-name WITH PASSWORD 'user-password';`.
+	- `CREATE DATABASE db-name WITH OWNER 'user-name';`.
 
 In the `app` directory there's a very simple example of a FastAPI app with tests.
 
