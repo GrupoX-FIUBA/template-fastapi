@@ -13,7 +13,7 @@ This is a template to use as a starting point for FastAPI microservice repositor
 	- `XYX_SERVICE_API_KEY`: a random API Key to limit access to your service.
 3. In `.github/workflows/deploy.yml`, replace `X_SERVICE_API_KEY` with the name of the secret you just create, and `xdb` with the name of the database (preferably something like `musicdb`).
 4. Replace all `SERVICE-` with your service name in `docker-compose.yml`.
-4. If needed, create the user and database for postgres:
+5. If needed, create the user and database for postgres:
 	- Connect to the postgres instance (via Kubernetes).
 	- `CREATE USER user-name WITH PASSWORD 'user-password';`.
 	- `CREATE DATABASE db-name WITH OWNER 'user-name';`.
